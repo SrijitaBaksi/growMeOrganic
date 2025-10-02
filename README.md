@@ -11,13 +11,12 @@
 
 ## 🌟 Live Demo
 
-🔗 **[View Live Application](#)** *(Add your deployment URL here)*
+🔗 **[View Live Application](https://datatable-assignment-growmeorganic.netlify.app/)**
 
 ## 📹 Video Demonstration
 
 > Watch the complete feature walkthrough and implementation details
 
-[*Add your demo video link or embed here*]
 
 ---
 
@@ -208,19 +207,6 @@ window.history.pushState({}, "", url);
 3. **Optimized Selection Lookup** - O(1) selection checks using Record structure
 4. **API Call Optimization** - Debounced and controlled API requests
 5. **Memory Management** - No accumulation of data from previous pages
-
----
-
-## 📸 Screenshots
-
-### Main DataTable View
-*The primary interface showing artwork data with selection checkboxes*
-
-### Custom Bulk Selection Panel
-*Advanced selection panel allowing users to select specific quantities*
-
-### Persistent Selection Across Pages
-*Demonstrating selection maintenance when navigating between pages*
 
 ---
 
