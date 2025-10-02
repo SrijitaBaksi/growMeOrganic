@@ -17,6 +17,7 @@
 
 > Watch the complete feature walkthrough and implementation details
 
+https://github.com/user-attachments/assets/5ba09159-4811-4c98-8387-d887a05e2d52
 
 ---
 
