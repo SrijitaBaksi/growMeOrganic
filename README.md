@@ -1,4 +1,4 @@
-# 🎨 Artwork DataTable - GrowMeOrganic Assignment
+#  Artwork DataTable - GrowMeOrganic Assignment
 
 > A powerful, feature-rich React application showcasing advanced data table capabilities with persistent selection across pages.
 
@@ -9,18 +9,18 @@
 
 ---
 
-## 🌟 Live Demo
+##  Live Demo
 
 🔗 **[View Live Application](https://datatable-assignment-growmeorganic.netlify.app/)**
 
-## 📹 Video Demonstration
+## Video Demonstration
 
 > Watch the complete feature walkthrough and implementation details
 
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Features](#-features)
 - [Assignment Requirements](#-assignment-requirements)
@@ -33,20 +33,20 @@
 
 ---
 
-## ✨ Features
+##  Features
 
-### 🎯 Core Functionality
+### Core Functionality
 
-- **📊 Advanced Data Table** - Built with PrimeReact DataTable component for robust data display
-- **🔄 Server-Side Pagination** - Efficient data fetching with API calls for each page
-- **✅ Persistent Row Selection** - Selections maintained across page changes
-- **🎛️ Custom Bulk Selection Panel** - Select/deselect multiple rows with custom quantity
-- **🔍 Real-time Selection Counter** - Track total selected items across all pages
-- **⚡ Loading States** - Visual feedback during data fetching
-- **❌ Error Handling** - Graceful error messages for failed API calls
-- **📱 Responsive Design** - Works seamlessly across different screen sizes
+- ** Advanced Data Table** - Built with PrimeReact DataTable component for robust data display
+- ** Server-Side Pagination** - Efficient data fetching with API calls for each page
+- ** Persistent Row Selection** - Selections maintained across page changes
+- ** Custom Bulk Selection Panel** - Select/deselect multiple rows with custom quantity
+- ** Real-time Selection Counter** - Track total selected items across all pages
+- ** Loading States** - Visual feedback during data fetching
+- ** Error Handling** - Graceful error messages for failed API calls
+- ** Responsive Design** - Works seamlessly across different screen sizes
 
-### 🎨 User Experience
+###  User Experience
 
 - **Checkbox Selection** - Individual row selection with checkboxes
 - **Select All Toggle** - Quick selection/deselection of current page items
@@ -57,11 +57,11 @@
 
 ---
 
-## ✅ Assignment Requirements
+## Assignment Requirements
 
 All assignment criteria have been **successfully implemented** and verified:
 
-### 📝 Development Requirements
+###  Development Requirements
 
 - [x] **React App Created with Vite** - Modern, fast build tool
 - [x] **TypeScript Implementation** - 100% TypeScript, zero JavaScript
@@ -73,7 +73,7 @@ All assignment criteria have been **successfully implemented** and verified:
 - [x] **Custom Selection Panel** - Advanced bulk selection interface
 - [x] **Persistent Selection** - Selections maintained across all pages
 
-### 🔒 Critical Checks Verified
+###  Critical Checks Verified
 
 - [x] **No Full Data Storage** - Only current page data stored in state
 - [x] **API Called on Every Page Change** - Fresh data fetched for each navigation
@@ -82,7 +82,7 @@ All assignment criteria have been **successfully implemented** and verified:
 
 ---
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 | Technology | Purpose | Version |
 |------------|---------|---------|
@@ -95,7 +95,7 @@ All assignment criteria have been **successfully implemented** and verified:
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -132,7 +132,7 @@ All assignment criteria have been **successfully implemented** and verified:
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 growMeOrganic/
@@ -154,9 +154,9 @@ growMeOrganic/
 
 ---
 
-## 🔑 Key Implementation Details
+##  Key Implementation Details
 
-### 1️⃣ Efficient State Management
+###  Efficient State Management
 
 ```typescript
 // Only current page data is stored - prevents memory issues
@@ -166,7 +166,7 @@ const [artworksOnPage, setArtworksOnPage] = useState<Artwork[]>([]);
 const [selectionState, setSelectionState] = useState<Record<number, Artwork>>({});
 ```
 
-### 2️⃣ Server-Side Pagination
+###  Server-Side Pagination
 
 ```typescript
 // API called on every page change
@@ -175,21 +175,21 @@ useEffect(() => {
 }, [currentPage]);
 ```
 
-### 3️⃣ Persistent Selection Logic
+###  Persistent Selection Logic
 
 - Selections stored in a **Record/Dictionary** structure indexed by artwork ID
 - When page changes, only current page data is updated
 - Selection state remains intact, providing persistence
 - Active selections filtered from current page for display
 
-### 4️⃣ Custom Bulk Selection
+### Custom Bulk Selection
 
 - Users can input any quantity (e.g., 20 rows)
 - System fetches multiple pages if needed
 - Toggles selection/deselection intelligently
 - Prevents memory overflow by not storing all fetched data
 
-### 5️⃣ URL State Management
+###  URL State Management
 
 ```typescript
 // Page state persisted in URL
@@ -200,7 +200,7 @@ window.history.pushState({}, "", url);
 
 ---
 
-## ⚡ Performance Optimizations
+## Performance Optimizations
 
 1. **Lazy Loading** - Only fetches data for the current page
 2. **Efficient Re-renders** - Minimal state updates using useEffect dependencies
@@ -210,7 +210,7 @@ window.history.pushState({}, "", url);
 
 ---
 
-## 🎯 API Reference
+##  API Reference
 
 **Data Source:** [Art Institute of Chicago API](https://api.artic.edu/docs/)
 
@@ -232,7 +232,7 @@ GET https://api.artic.edu/api/v1/artworks?page={pageNumber}
 
 ---
 
-## 🧪 Testing Checklist
+##  Testing Checklist
 
 Before submission, verify these critical features:
 
@@ -252,7 +252,7 @@ Before submission, verify these critical features:
 
 ---
 
-## 🚢 Deployment
+##  Deployment
 
 This application is deployed on **[Platform Name]** and can be accessed at:
 
@@ -270,7 +270,7 @@ dist/
 
 ---
 
-## 👨‍💻 Developer
+##  Developer
 
 **Srijita Baksi**
 
@@ -279,13 +279,13 @@ dist/
 
 ---
 
-## 📄 License
+##  License
 
 This project was created as part of the GrowMeOrganic technical assessment.
 
 ---
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - **GrowMeOrganic** for the assignment opportunity
 - **Art Institute of Chicago** for providing the public API
@@ -296,8 +296,7 @@ This project was created as part of the GrowMeOrganic technical assessment.
 
 <div align="center">
 
-### ⭐ If you found this implementation helpful, please consider giving it a star!
+###  If you found this implementation helpful, please consider giving it a star!
 
-**Made with ❤️ and TypeScript**
 
 </div>
