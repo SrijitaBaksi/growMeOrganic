@@ -1,23 +1,43 @@
 import { useEffect, useRef, useState } from "react";
 import { DataTable } from "primereact/datatable";
+import type { DataTableSelectionMultipleChangeEvent } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { OverlayPanel } from "primereact/overlaypanel";
 import { Button } from "primereact/button";
 import { Checkbox } from "primereact/checkbox";
 import { Paginator } from "primereact/paginator";
+import type { PaginatorPageChangeEvent } from "primereact/paginator"; // type-only import
 import { Message } from "primereact/message";
 import axios from "axios";
 
-const fetchApi = async (pageNumber: number) => {
+// --- TYPES ---
+interface Artwork {
+  id: number;
+  title: string;
+  artist_display: string;
+  place_of_origin: string;
+}
+
+interface ApiResponse {
+  data: Artwork[];
+  pagination: {
+    limit: number;
+    total: number;
+  };
+}
+
+// --- API SERVICE ---
+const fetchApi = async (pageNumber: number): Promise<ApiResponse> => {
   const response = await axios.get(
     `https://api.artic.edu/api/v1/artworks?page=${pageNumber}`
   );
   return response.data;
 };
 
+// --- COMPONENT ---
 export const Datatable = () => {
-  const [artworksOnPage, setArtworksOnPage] = useState<any[]>([]);
-  const [selectionState, setSelectionState] = useState<Record<number, any>>({});
+  const [artworksOnPage, setArtworksOnPage] = useState<Artwork[]>([]);
+  const [selectionState, setSelectionState] = useState<Record<number, Artwork>>({});
   const [currentPage, setCurrentPage] = useState(0);
   const [totalArtworks, setTotalArtworks] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(12);
@@ -43,7 +63,7 @@ export const Datatable = () => {
     setIsLoading(true);
     setFetchError(null);
     try {
-      const response = await fetchApi(pageNumber);
+      const response: ApiResponse = await fetchApi(pageNumber);
       setRowsPerPage(response.pagination.limit);
       setTotalArtworks(response.pagination.total);
       setArtworksOnPage(response.data);
@@ -55,10 +75,10 @@ export const Datatable = () => {
     }
   };
 
-  const onPageChange = (e: any) => {
+  const onPageChange = (e: PaginatorPageChangeEvent) => {
     setCurrentPage(e.page);
     const url = new URL(window.location.href);
-    url.searchParams.set("page", e.page + 1);
+    url.searchParams.set("page", (e.page + 1).toString());
     window.history.pushState({}, "", url);
   };
 
@@ -70,14 +90,14 @@ export const Datatable = () => {
     bulkSelectPanel.current?.hide();
 
     try {
-      let fetchedItems: any[] = [];
+      let fetchedItems: Artwork[] = [];
       let pageToFetch = 1;
 
       while (
         fetchedItems.length < quantity &&
         (pageToFetch - 1) * rowsPerPage < totalArtworks
       ) {
-        const response = await fetchApi(pageToFetch);
+        const response: ApiResponse = await fetchApi(pageToFetch);
         fetchedItems = fetchedItems.concat(response.data);
         pageToFetch++;
       }
@@ -87,7 +107,7 @@ export const Datatable = () => {
         (item) => selectionState[item.id]
       );
 
-      const newSelection = { ...selectionState };
+      const newSelection: Record<number, Artwork> = { ...selectionState };
       if (isAllTargetedSelected) {
         targetItems.forEach((item) => delete newSelection[item.id]);
       } else {
@@ -115,7 +135,7 @@ export const Datatable = () => {
           activePageSelection.length === artworksOnPage.length
         }
         onChange={(e) => {
-          const updatedSelection = { ...selectionState };
+          const updatedSelection: Record<number, Artwork> = { ...selectionState };
           if (e.checked) {
             artworksOnPage.forEach(
               (artwork) => (updatedSelection[artwork.id] = artwork)
@@ -144,7 +164,7 @@ export const Datatable = () => {
           />
           <Button
             label="Apply"
-            style={{ margin:"20px"}}
+            style={{ margin: "20px" }}
             icon="pi pi-check"
             className="p-button-sm w-full"
             onClick={() => {
@@ -170,11 +190,11 @@ export const Datatable = () => {
       <DataTable
         value={artworksOnPage}
         selection={activePageSelection}
-        onSelectionChange={(e) => {
+        onSelectionChange={(e: DataTableSelectionMultipleChangeEvent<Artwork[]>) => {
           const pageSelection = e.value;
-          const pageSelectionIds = new Set(pageSelection.map((item: any) => item.id));
+          const pageSelectionIds = new Set(pageSelection.map((item) => item.id));
 
-          const updatedSelection = { ...selectionState };
+          const updatedSelection: Record<number, Artwork> = { ...selectionState };
           artworksOnPage.forEach((item) => {
             if (pageSelectionIds.has(item.id)) {
               updatedSelection[item.id] = item;
